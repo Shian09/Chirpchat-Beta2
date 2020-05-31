@@ -42,6 +42,20 @@ const styles = {
       color: "#ffab00",
     },
   },
+  contentImage: {
+    marginTop: "10px",
+    marginBottom: "5px",
+    height: "150px",
+    objectFit: "cover",
+    marginLeft: "20px",
+    display: "flex",
+    flexDirection: "row",
+    "& .loadOriginal": {
+      borderRadius: "10%",
+      display: "block",
+      height: "100%",
+    },
+  },
 };
 
 class Scream extends Component {
@@ -51,6 +65,7 @@ class Scream extends Component {
       classes,
       scream: {
         body,
+        type,
         createdAt,
         userImage,
         userHandle,
@@ -90,7 +105,14 @@ class Scream extends Component {
           <Typography variant="body2" color="textSecondary">
             {dayjs(createdAt).fromNow()}
           </Typography>
-          <Typography variant="body1">{body}</Typography>
+          {body.includes("https://") || body.includes("http://") ? (
+            <div className={classes.contentImage}>
+              <img src={body} className="loadOriginal" />
+            </div>
+          ) : (
+            <Typography variant="body1">{body}</Typography>
+          )}
+          <span> </span>
           <LikeButton screamId={screamId} />
           <span>{likeCount} likes</span>
           <MyButton tip="Comments">

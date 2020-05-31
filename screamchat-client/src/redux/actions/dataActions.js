@@ -123,7 +123,6 @@ export const deleteScream = (screamId) => (dispatch) => {
   axios
     .delete(`/scream/${screamId}`)
     .then(() => {
-      console.log("Inside DELETE_SCREAM");
       dispatch({
         type: DELETE_SCREAM,
         payload: screamId,

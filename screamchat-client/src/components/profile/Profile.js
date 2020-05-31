@@ -114,7 +114,9 @@ class Profile extends Component {
         <Paper className={classes.paper}>
           <div className={classes.profile}>
             <div className="image-wrapper">
-              <img src={imageUrl} alt="profile" className="profile-image" />
+              <a href={imageUrl} target="_blank">
+                <img src={imageUrl} alt="profile" className="profile-image" />
+              </a>
               <input
                 type="file"
                 id="imageInput"

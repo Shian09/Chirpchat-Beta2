@@ -1,4 +1,4 @@
-const { db } = require("../util/admin");
+const { db, admin } = require("../util/admin");
 
 /**********Get all screams************/
 exports.getAllScreams = (req, res) => {
@@ -11,6 +11,7 @@ exports.getAllScreams = (req, res) => {
         screams.push({
           screamId: doc.id,
           body: doc.data().body,
+          type: doc.data().type,
           userHandle: doc.data().userHandle,
           createdAt: doc.data().createdAt,
           commentCount: doc.data().commentCount,
@@ -34,6 +35,7 @@ exports.postOneScream = (req, res) => {
 
   let newScream = {
     body: req.body.body,
+    type: req.body.type,
     userHandle: req.user.handle,
     userImage: req.user.imageUrl,
     createdAt: new Date().toISOString(),

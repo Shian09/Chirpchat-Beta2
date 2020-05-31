@@ -11,7 +11,7 @@ import {
 
 const initialState = {
   screams: [], //Screams to show on home page
-  scream: {},
+  scream: {}, //The scream that is opened in screamDialog
   loading: false,
 };
 

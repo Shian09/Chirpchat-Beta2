@@ -56,6 +56,18 @@ const styles = {
     borderBottom: "1px solid rgba(0,0,0,0.1)",
     marginBottom: 20,
   },
+  contentImage: {
+    maxWidth: "270px",
+    maxHeight: "400px",
+    objectFit: "cover",
+    marginLeft: "20px",
+    display: "flex",
+    flexDirection: "row",
+    "& .loadOriginal": {
+      display: "block",
+      height: "100%",
+    },
+  },
 };
 
 class ScreamDialog extends Component {
@@ -112,7 +124,7 @@ class ScreamDialog extends Component {
         <CircularProgress size={100} thickness={2} />
       </div>
     ) : (
-      <Grid container spacing={3}>
+      <Grid container spacing={1}>
         <Grid item sm={5}>
           <img src={userImage} alt="Profile" className={classes.profileImage} />
         </Grid>
@@ -130,7 +142,13 @@ class ScreamDialog extends Component {
             {dayjs(createdAt).format("h:mm a, MMMM DD YYYY")}
           </Typography>
           <hr className={classes.invisibleSeparator} />
-          <Typography variant="body1">{body}</Typography>
+          {body && (body.includes("https://") || body.includes("http://")) ? (
+            <a href={body} target="_blank">
+              <img src={body} className={classes.contentImage} />
+            </a>
+          ) : (
+            <Typography variant="body1">{body}</Typography>
+          )}
           <LikeButton screamId={screamId} />
           <span>{likeCount} likes</span>
           <MyButton tip="Comments">

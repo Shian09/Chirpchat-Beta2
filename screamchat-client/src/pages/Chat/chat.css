@@ -1,9 +1,13 @@
 .root {
-  min-width: 155%;
   text-align: center;
   flex-direction: column;
   display: flex;
-  margin-left: -300px;
+  width: 100%;
+  min-width: 500px;
+  max-height: 90vh;
+  min-height: 90vh;
+  position: absolute;
+  left: 0;
 }
 
 .header {
@@ -18,6 +22,97 @@
 .body {
   display: flex;
   flex-direction: row;
+}
+
+.viewListUser {
+  overflow-y: scroll;
+
+  height: 90vh;
+  min-height: 90vh;
+  width: 25%;
+
+  /* padding-top: 10px; */
+  /* padding-bottom: 10px; */
+}
+
+.viewListUser::-webkit-scrollbar-track {
+  padding: 2px 0;
+  background-color: #fff;
+}
+
+.viewListUser::-webkit-scrollbar {
+  width: 3px;
+}
+
+.viewListUser::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #9999;
+}
+
+.viewIndividual {
+  background-color: #d4f0f0;
+  border: 1px #f4f4f4 solid;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.viewIndividual:hover {
+  background-color: #fff;
+}
+
+a:hover {
+  color: #ffab00;
+}
+
+.viewBoard {
+  display: flex;
+  flex: 1;
+  max-height: 90vh;
+  min-height: 90vh;
+  max-width: 100%;
+}
+
+.profileviewleftside {
+  display: inline-block;
+  padding: 10px;
+  width: 50%;
+  height: 64px;
+  position: relative;
+  margin-top: 5px;
+  background-color: #eef0b5;
+  border: 1px #f4f4f4 solid;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  align-content: center;
+}
+
+.profileAlign {
+  margin-left: 75px;
+}
+
+.ProfilePicture {
+  width: 60px;
+  height: 60px;
+  background-image: url(../../images//no-img.png);
+  left: 0px;
+  position: absolute;
+  cursor: pointer;
+  border-radius: 50%;
+  margin-left: 50px;
+  display: block;
+}
+
+.profileName {
+  color: rgb(0, 0, 0);
+  margin-left: -5px;
+  margin-top: 5px;
+}
+
+.profileDesc {
+  color: #808888;
+  margin-left: -5px;
 }
 
 .viewLoading {
@@ -45,33 +140,6 @@
   box-shadow: 0 5px 5px #808888;
 }
 
-.profileName {
-  color: rgb(0, 0, 0);
-  margin-left: -5px;
-  margin-top: 5px;
-}
-
-.profileDesc {
-  color: #808888;
-  margin-left: -5px;
-}
-
-.profileAlign {
-  margin-left: 75px;
-}
-
-.ProfilePicture {
-  width: 60px;
-  height: 60px;
-  background-image: url(../../images//no-img.png);
-  left: 10px;
-  position: absolute;
-  cursor: pointer;
-  border-radius: 50%;
-  margin-left: 50px;
-  display: block;
-}
-
 /* Dialog confirm */
 
 .viewCoverScreen {
@@ -84,22 +152,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.viewIndividual {
-  background-color: #d4f0f0;
-  border: 1px #f4f4f4 solid;
-  border-radius: 15px;
-  margin-bottom: 10px;
-  padding: 10px;
-}
-
-.viewIndividual:hover {
-  background-color: #fff;
-}
-
-a:hover {
-  color: #ffab00;
 }
 
 .viewWrapTextDialogConfirmLogout {
@@ -169,31 +221,6 @@ a:hover {
 
 /* List user */
 
-.viewListUser {
-  overflow-y: scroll;
-  max-height: 90vh;
-  min-height: 90vh;
-  max-width: 50vh;
-  min-width: 2px;
-  /* padding-top: 10px; */
-  /* padding-bottom: 10px; */
-}
-
-.viewListUser::-webkit-scrollbar-track {
-  padding: 2px 0;
-  background-color: #ffffff;
-}
-
-.viewListUser::-webkit-scrollbar {
-  width: 3px;
-}
-
-.viewListUser::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #9999;
-}
-
 .viewWrapItem {
   border: none;
   display: flex;
@@ -207,18 +234,6 @@ a:hover {
   /* border-left: 15px solid #1ebea5; */
   /* margin-bottom: 3px; */
   border-bottom: 1px solid rgb(220, 220, 220);
-}
-
-.viewIndividual {
-  background-color: #d4f0f0;
-  border: 1px #f4f4f4 solid;
-  border-radius: 15px;
-  margin-bottom: 10px;
-  padding: 10px;
-}
-
-.viewIndividual:hover {
-  background-color: #fff;
 }
 
 .viewWrapItemNotification {
@@ -275,12 +290,6 @@ a:hover {
   font-size: 16px;
 }
 
-.viewBoard {
-  display: flex;
-  flex: 1;
-  max-height: 90vh;
-}
-
 /* --------------------------------SEARCH BUTTON DESIGN-------------------------------- */
 .rootsearchbar {
   padding: 10px;
@@ -298,20 +307,6 @@ a:hover {
   width: 100%;
 }
 
-.profileviewleftside {
-  padding: 10px;
-  width: 50%;
-  height: 64px;
-  position: relative;
-  margin-top: 0;
-  background-color: #eef0b5;
-  border: 1px #f4f4f4 solid;
-  border-radius: 15px;
-  margin-bottom: 10px;
-  align-content: center;
-  margin-left: 103px;
-  display: block;
-}
 .input-container {
   /* IE10 */
   display: flex;

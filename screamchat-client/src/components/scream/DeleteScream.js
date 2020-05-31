@@ -72,6 +72,7 @@ DeleteScream.prototypes = {
   classes: PropTypes.object.isRequired,
   deleteScream: PropTypes.func.isRequired,
   screamId: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string,
 };
 
 export default connect(null, { deleteScream })(

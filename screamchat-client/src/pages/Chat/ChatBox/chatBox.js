@@ -22,6 +22,7 @@ import { connect } from "react-redux";
 import SendIcon from "@material-ui/icons/SendOutlined";
 import PhotoIcon from "@material-ui/icons/Photo";
 import EmojiIcon from "@material-ui/icons/EmojiEmotions";
+import { Link } from "react-router-dom";
 
 class chatBox extends Component {
   constructor(props) {
@@ -235,9 +236,13 @@ class chatBox extends Component {
             src={this.currentPeerUser.URL}
             alt=""
           />
-          <span className="textHeaderChatBoard">
+
+          <Link
+            to={`/users/${this.currentPeerUser.name}`}
+            className="textHeaderChatBoard"
+          >
             <p style={{ fontSize: "20px" }}>{this.currentPeerUser.name}</p>
-          </span>
+          </Link>
         </div>
 
         <div className="viewListContentChat">

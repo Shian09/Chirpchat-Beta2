@@ -2,6 +2,10 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import MyButton from "../../util/MyButton";
+import * as moment from "moment";
+import LoginString from "../../pages/LoginStrings";
+import firebase from "../../Services/firebase";
+import ReactLoading from "react-loading";
 
 //Redux Stuff
 import { connect } from "react-redux";
@@ -18,6 +22,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 //Icons
 import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
+import PhotoIcon from "@material-ui/icons/Photo";
 
 const styles = {
   textField: {
@@ -29,6 +34,14 @@ const styles = {
     marginTop: 10,
     marginBottom: 10,
   },
+
+  uploadImageBtn: {
+    position: "relative",
+    float: "left",
+    marginTop: 10,
+    marginBottom: 10,
+  },
+
   progressSpinner: {
     position: "absolute",
   },
@@ -42,6 +55,13 @@ const styles = {
     fontSize: "1px",
     color: "#00bcd4",
   },
+  viewInputGallery: {
+    opacity: 0,
+    position: "absolute",
+    zIndex: -1,
+    left: "10px",
+    width: "30px",
+  },
 };
 
 class PostScream extends Component {
@@ -49,6 +69,7 @@ class PostScream extends Component {
     open: false,
     body: "",
     errors: {},
+    isLoading: false,
   };
   componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) {
@@ -75,8 +96,56 @@ class PostScream extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.postScream({ body: this.state.body });
+    this.props.postScream({ body: this.state.body, type: "text" });
   };
+
+  onChoosePhoto = (event) => {
+    let currentPhotoFile = null;
+    if (event.target.files && event.target.files[0]) {
+      this.setState({ isLoading: true });
+      const prefixFileType = event.target.files[0].type.toString();
+      if (prefixFileType.indexOf("image/") === 0) {
+        currentPhotoFile = event.target.files[0];
+        this.uploadPhoto(currentPhotoFile);
+      } else {
+        this.setState({ isLoading: false });
+        console.log("This file is not an image");
+      }
+    } else {
+      this.setState({ isLoading: false });
+      console.log("Something wrong with input file");
+    }
+  };
+
+  uploadPhoto = (currentPhotoFile) => {
+    if (currentPhotoFile) {
+      const timestamp = new moment().valueOf().toString();
+      const uploadTask = firebase
+        .storage()
+        .ref()
+        .child(timestamp)
+        .put(currentPhotoFile);
+
+      uploadTask.on(
+        LoginString.UPLOAD_CHANGED,
+        null,
+        (err) => {
+          this.setState({ isLoading: false });
+          console.log("Error: ", err.message);
+        },
+        () => {
+          uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+            this.setState({ body: downloadURL, isLoading: false });
+            this.props.postScream({ body: this.state.body, type: "image" });
+          });
+        }
+      );
+    } else {
+      this.setState({ isLoading: false });
+      console.log("File is null");
+    }
+  };
+
   render() {
     const { errors } = this.state;
     const {
@@ -119,6 +188,40 @@ class PostScream extends Component {
                 onChange={this.handleChange}
                 fullWidth
               />
+
+              <MyButton
+                tip="Post a picture"
+                onClick={() => {
+                  this.refInput.click();
+                }}
+                btnClassName="uploadImageBtn"
+              >
+                <PhotoIcon color="primary" />
+              </MyButton>
+
+              <span>Upload your image</span>
+
+              <input
+                ref={(el) => {
+                  this.refInput = el;
+                }}
+                className="viewInputGallery"
+                accept="images/*"
+                type="file"
+                onChange={this.onChoosePhoto}
+              />
+
+              {this.state.isLoading ? (
+                <div className="viewLoading">
+                  <ReactLoading
+                    type={"spin"}
+                    color={"#00bcd4"}
+                    height={"10%"}
+                    width={"10%"}
+                  />
+                </div>
+              ) : null}
+
               <Button
                 type="submit"
                 variant="contained"

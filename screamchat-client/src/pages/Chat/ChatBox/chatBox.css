@@ -4,7 +4,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  width: 100%;
+  max-width: 100%;
   position: relative;
 
   /* background-image: url("https://i.pinimg.com/474x/2e/2e/25/2e2e25c53d858f4af66151304fdb68b7.jpg");*/
@@ -36,26 +36,13 @@
   background-color: #ffffff;
   margin-left: -3px;
 }
-.aboutme {
-  padding-top: 20px;
-  margin-left: 80px;
-
-  align-items: center;
-  display: flex;
-  position: absolute;
-}
-.textHeaderChatBoard {
-  font-weight: bold;
-  color: #000;
-  margin-left: 10px;
-  margin-top: -10px;
-}
 
 .viewListContentChat {
   display: flex;
   flex: 1;
   flex-direction: column;
   overflow-y: scroll;
+  overflow-x: scroll;
   padding-top: 10px;
   padding-bottom: 20px;
 }
@@ -82,6 +69,22 @@
   height: 80px;
   border-top: 0.1px solid rgb(241, 234, 234);
   background-color: #fff;
+}
+
+.aboutme {
+  padding-top: 20px;
+  margin-left: 80px;
+
+  align-items: center;
+  display: flex;
+  position: absolute;
+}
+
+.textHeaderChatBoard {
+  font-weight: bold;
+  color: #000;
+  margin-left: 10px;
+  margin-top: -10px;
 }
 
 .icOpenGallery {

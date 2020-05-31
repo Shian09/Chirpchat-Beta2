@@ -140,6 +140,7 @@ exports.getUserDetails = (req, res) => {
       data.forEach((doc) => {
         userData.screams.push({
           body: doc.data().body,
+          type: doc.data().type,
           commentCount: doc.data().commentCount,
           createdAt: doc.data().createdAt,
           likeCount: doc.data().likeCount,
