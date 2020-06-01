@@ -70,7 +70,7 @@ class Navbar extends Component {
 Navbar.propTypes = {
   authenticated: PropTypes.bool.isRequired,
   classes: PropTypes.object.isRequired,
-  messages: PropTypes.array.isRequired,
+  messages: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({

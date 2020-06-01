@@ -15,7 +15,7 @@ import Badge from "@material-ui/core/Badge";
 //Icons
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-import ChatIcon from "@material-ui/icons/Chat";
+import CommentIcon from "@material-ui/icons/CommentOutlined";
 
 //Redux
 import { connect } from "react-redux";
@@ -74,7 +74,7 @@ class Notifications extends Component {
             not.type === "like" ? (
               <FavoriteIcon color={iconColor} style={{ marginRight: 10 }} />
             ) : (
-              <ChatIcon color={iconColor} style={{ marginRight: 10 }} />
+              <CommentIcon color={iconColor} style={{ marginRight: 10 }} />
             );
           return (
             <MenuItem key={not.createdAt} onClick={this.handleClose}>

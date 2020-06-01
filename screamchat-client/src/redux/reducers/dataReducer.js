@@ -35,7 +35,6 @@ export default function (state = initialState, action) {
       };
     case LIKE_SCREAM:
     case UNLIKE_SCREAM:
-      console.log("In data LIKE_SCREAM: ", action.payload);
       let index = state.screams.findIndex(
         (scream) => scream.screamId === action.payload.screamId
       );

@@ -44,7 +44,7 @@ class ChatIconNavbar extends Component {
 }
 
 ChatIconNavbar.propTypes = {
-  messages: PropTypes.array.isRequired,
+  messages: PropTypes.array,
 };
 
 const mapStateToProps = (state) => ({
